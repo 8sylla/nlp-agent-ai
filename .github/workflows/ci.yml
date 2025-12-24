@@ -1,0 +1,79 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # JOB 1 : TESTER LE BACKEND
+  test-backend:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./backend
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Cache pip packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('backend/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        # On installe les requirements standards
+        pip install -r requirements.txt
+        # Installation des outils de test
+        pip install pytest pytest-asyncio httpx
+
+    - name: Install Spacy Model
+      # On installe le modèle via lien direct pour éviter les erreurs de lien symbolique
+      run: |
+        pip install https://github.com/explosion/spacy-models/releases/download/fr_core_news_lg-3.7.0/fr_core_news_lg-3.7.0.tar.gz
+
+    - name: Run Tests
+      # On lance pytest. Note: On ne teste pas le RAG ici car il faut Postgres.
+      # On se concentre sur l'API et le NLU.
+      run: |
+        pytest tests/test_api.py -v
+
+  # JOB 2 : VÉRIFIER LE FRONTEND
+  check-frontend:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: ./frontend-next
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: frontend-next/package-lock.json
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Linting
+      run: npm run lint
+      
+    - name: Build Test
+      run: npm run build
+      
