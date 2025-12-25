@@ -180,11 +180,3 @@ ai-support-agent/
 ├── Makefile                 # Commandes raccourcies
 └── README.md                # Documentation
 ```
-
----
-
-## 👨‍💻 Auteur
-
-**SYLLA N'faly**  
-*Ingénieur Data & IA*  
-Projet réalisé dans le cadre du développement d'agents autonomes pour le service client.

@@ -1,0 +1,162 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- START NODE -->
+    <mxCell id="start" value="" style="ellipse;html=1;shape=startState;fillColor=#000000;strokeColor=#ff0000;" vertex="1" parent="1">
+      <mxGeometry x="385" y="40" width="30" height="30" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="lbl_start" value="Message Reçu" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="360" y="10" width="80" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- STEP 1: CONTEXT -->
+    <mxCell id="context" value="Détection Langue &amp; Sentiment" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="320" y="110" width="160" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DECISION: SENTIMENT -->
+    <mxCell id="dec_sentiment" value="Sentiment &lt;br&gt;Négatif ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="350" y="200" width="100" height="100" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act_apology" value="Ajout Préfixe Excuses" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="520" y="225" width="140" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DECISION: LANGUE -->
+    <mxCell id="dec_lang" value="Langue == FR ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="350" y="340" width="100" height="100" as="geometry" />
+    </mxCell>
+
+    <mxCell id="act_nlu" value="Exécution Spacy NLU&lt;br&gt;(Extract Intent/Entities)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="140" y="365" width="140" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DECISION: ORDER -->
+    <mxCell id="dec_order" value="Intent = TRACK&lt;br&gt;ou ID détecté ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="340" y="480" width="120" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- PATH A: TRANSACTION -->
+    <mxCell id="act_mock" value="&lt;b&gt;Appel Mock API&lt;/b&gt;&lt;br&gt;(Get Order Status)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="580" y="515" width="140" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- PATH B: GRAPHRAG -->
+    <mxCell id="act_graph" value="&lt;b&gt;Appel GraphRAG&lt;/b&gt;&lt;br&gt;(Gemini + Neo4j)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="330" y="650" width="140" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DECISION: GRAPH SUCCESS -->
+    <mxCell id="dec_graph_ok" value="Réponse&lt;br&gt;Trouvée ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="350" y="740" width="100" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- PATH C: VECTORRAG -->
+    <mxCell id="act_vector" value="&lt;b&gt;Appel VectorRAG&lt;/b&gt;&lt;br&gt;(Postgres pgvector)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+      <mxGeometry x="330" y="880" width="140" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- DECISION: VECTOR SUCCESS -->
+    <mxCell id="dec_vector_ok" value="Score &gt; 0.25 ?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+      <mxGeometry x="350" y="970" width="100" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- END STATES -->
+    <mxCell id="end_success" value="Réponse Finale" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1" vertex="1" parent="1">
+      <mxGeometry x="600" y="765" width="120" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="end_fallback" value="Message Fallback&lt;br&gt;(Je ne sais pas)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="340" y="1120" width="120" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- EDGES (CONNECTORS) -->
+    
+    <mxCell id="e1" edge="1" parent="1" source="start" target="context">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="e2" edge="1" parent="1" source="context" target="dec_sentiment">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Sentiment Logic -->
+    <mxCell id="e3" value="Oui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_sentiment" target="act_apology">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="act_apology" target="dec_lang">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="590" y="320" />
+          <mxPoint x="400" y="320" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e5" value="Non" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_sentiment" target="dec_lang">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Lang Logic -->
+    <mxCell id="e6" value="Oui (FR)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_lang" target="act_nlu">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="act_nlu" target="dec_order">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="210" y="460" />
+          <mxPoint x="400" y="460" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e8" value="Non (Arabe)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_lang" target="dec_order">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Order Logic -->
+    <mxCell id="e9" value="Oui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_order" target="act_mock">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="act_mock" target="end_success">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="650" y="600" />
+          <mxPoint x="660" y="600" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e11" value="Non" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_order" target="act_graph">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Graph Logic -->
+    <mxCell id="e12" edge="1" parent="1" source="act_graph" target="dec_graph_ok">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e13" value="Oui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dec_graph_ok" target="end_success">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e14" value="Non" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_graph_ok" target="act_vector">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Vector Logic -->
+    <mxCell id="e15" edge="1" parent="1" source="act_vector" target="dec_vector_ok">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e16" value="Oui" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dec_vector_ok" target="end_success">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="660" y="1020" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e17" value="Non" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;" edge="1" parent="1" source="dec_vector_ok" target="end_fallback">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>

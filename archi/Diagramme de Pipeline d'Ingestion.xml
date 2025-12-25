@@ -1,0 +1,72 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- INPUT SOURCE -->
+    <mxCell id="source" value="&lt;b&gt;Documents Bruts&lt;/b&gt;&lt;br&gt;FAQ.txt, Policy.pdf" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f5f5f5;strokeColor=#666666;size=15;" vertex="1" parent="1">
+      <mxGeometry x="40" y="220" width="100" height="120" as="geometry" />
+    </mxCell>
+
+    <!-- PROCESSING CONTAINER (Python Script) -->
+    <mxCell id="pipeline" value="&lt;b&gt;Pipeline d'Ingestion (LangChain)&lt;/b&gt;&lt;br&gt;&lt;i&gt;Script: ingest_graph.py&lt;/i&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=40;rounded=1;arcSize=6;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="200" y="160" width="500" height="240" as="geometry" />
+    </mxCell>
+
+    <!-- STEP 1: CHUNKING -->
+    <mxCell id="chunking" value="1. Chunking&lt;br&gt;&lt;i&gt;(Découpage)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="pipeline">
+      <mxGeometry x="40" y="90" width="100" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- STEP 2: EXTRACTION -->
+    <mxCell id="extraction" value="2. Extraction&lt;br&gt;&lt;i&gt;(LLMGraphTransformer)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1" vertex="1" parent="pipeline">
+      <mxGeometry x="190" y="90" width="140" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- STEP 3: CONSTRUCTION -->
+    <mxCell id="construction" value="3. Construction&lt;br&gt;&lt;i&gt;(GraphDocuments)&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;" vertex="1" parent="pipeline">
+      <mxGeometry x="380" y="90" width="100" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ARROWS INSIDE PIPELINE -->
+    <mxCell id="p1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pipeline" source="chunking" target="extraction">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="p2" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="pipeline" source="extraction" target="construction">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- EXTERNAL INTELLIGENCE -->
+    <mxCell id="gemini" value="&lt;b&gt;Google Gemini&lt;/b&gt;&lt;br&gt;(Modèle 1.5 Flash)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="374" y="40" width="150" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- OUTPUT STORAGE -->
+    <mxCell id="neo4j" value="&lt;b&gt;Neo4j&lt;/b&gt;&lt;br&gt;(Base de Graphe)" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+      <mxGeometry x="760" y="230" width="100" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- CONNECTIONS -->
+
+    <!-- Source -> Pipeline -->
+    <mxCell id="c1" value="Load" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="source" target="chunking">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Pipeline -> Gemini -->
+    <mxCell id="c2" value="Texte" style="endArrow=classic;html=1;rounded=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=0.8;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="extraction" target="gemini">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Gemini -> Pipeline -->
+    <mxCell id="c3" value="Nœuds &amp; Relations" style="endArrow=classic;html=1;rounded=0;exitX=0.55;exitY=0.95;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="gemini" target="extraction">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Pipeline -> Output -->
+    <mxCell id="c4" value="Store" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="construction" target="neo4j">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+  </root>
+</mxGraphModel>
