@@ -1,0 +1,132 @@
+\begin{jointwork}
+    This is where you can write some meta information about your chapter. For example, this chapter is based on one of my publications~\cite{firstDemoReference}, and I just blindly copied everything without adjusting it. Just a heads-up warning.
+    
+    Sadly, if you cite your own publications, they will appear in the bibliography. Thus, make sure to cite your papers with yourself as one of the authors.
+\end{jointwork}
+
+This chapter shows off some of the basic formats of this thesis. Many packages are included in order for you to be able to start immediately without having to manually add all of the important things. The features deemed most important are now presented.
+
+Here is just some filler text.\footnote[-0.2][][15]{Here is a footnote with a strange number (if that floats your boat). Note how the footnote mark is \emph{above} the period at the end of the sentence.} The following citations use the command \textsf{textcite}: \textcite{firstDemoReference}; \textcite{secondDemoReference}. The first reference has a short list of authors, the second one a long list.\todo{Also note that you can include to-do notes if necessary. Delete this chapter!}
+
+\newcommand*{\filtration}{\mathOrText{\mathcal{F}}}
+\newcommand*{\randomProcess}{\mathOrText{X}}
+\newcommand*{\timePoint}{\mathOrText{t}}
+\newcommand*{\target}{\mathOrText{x_{\min}}}
+\newcommand*{\firstHittingTime}{\mathOrText{T}}
+\createFunction{\driftFunction}{h}
+\newcommand*{\functionDomain}{\mathOrText{D}}
+We now state a theorem and restate it later on again. Have a look at the source code in order to see how the theorem is written. Many macros are used, and all of them can be used without using math mode explicitly. Note that we can refer to \cref{eq:variableDrift} as an inequality through the magic of an option in its label.
+\begin{restatable}[Variable Drift]{theorem}{variableDrift}
+    \label{thm:variableDrift}
+    Let $(\filtration_\timePoint)_{\timePoint \in \N}$ be a filtration, $(\randomProcess_\timePoint)_{\timePoint \in \N}$ be a random process over~$\R^+_0$ adapted to~\filtration\!\!, $\target > 0$, and let $\firstHittingTime = \inf\set{\timePoint}{\randomProcess_\timePoint < \target}$. Additionally, let~\functionDomain denote the smallest real interval that contains at least all values $x \geq \target$ that, for all $\timePoint \leq \firstHittingTime$, any $\randomProcess_\timePoint$ can take. Furthermore, suppose that
+    \begin{enumerate}
+        \item $\randomProcess_0 \geq \target$ and that
+        
+        \item there is a monotonically increasing function $\driftFunction\colon \functionDomain \to \R^+$ such that, for all $\timePoint < \firstHittingTime$, we have $\randomProcess_t - \E{\randomProcess_{\timePoint + 1}}[\filtration_\timePoint] \geq \driftFunction[\randomProcess_\timePoint]$.
+    \end{enumerate}
+    Then
+    \begin{equation}
+        \E{\firstHittingTime}[\filtration_0] \leq \frac{\target}{\driftFunction[\target]} + \int^{\randomProcess_0}_{\target} \frac{1}{\driftFunction[z]} \d z\ .\label[ineq]{eq:variableDrift}\qedhere
+    \end{equation}
+\end{restatable}
+
+Please shift your attention to \Cref{fig:logos}. This reference was created using the package \textsf{cleveref}, which knows in what environment the label is defined in. This way, you can easily change a theorem into a lemma, and the name of the reference will be adjusted automatically. A wrapfigure like \Cref{fig:HPIwrap} is referenced just like a normal figure.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[height = 2.5 cm]{core/title_page/logo_HPI.pdf}\\[1 ex]
+        \caption{This is the caption of the subfigure that displays the logo of the \textsc{HPI}.}
+        \label{fig:HPI}
+    \end{subfigure}
+    \hfil
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[height = 2.5 cm]{core/title_page/logo_UP.pdf}\\[1 ex]
+        \caption{This is the caption of the subfigure that displays the logo of the UP.}
+        \label{fig:UP}
+    \end{subfigure}
+    \caption{These are the two logos featured on the title page. \Cref{fig:HPI} belongs to the HPI, whereas \Cref{fig:UP} belongs to the UP.}
+    \label{fig:logos}
+\end{figure}
+
+Of course, you can also use tables in a fancy style. See, for example, \Cref{tab:textAndNumbers}. This document already contains packages in order to also handle larger tables. Hence, it is possible to use tables spanning multiple pages or to rotate a page into landscape in order to fit in a wider table.
+
+Before we continue, consider the following obvious theorem. We conjecture that it also holds for $n = 2$.
+\begin{theorem}
+    \label{thm:fermatsTheorem}
+    Let $a, b, c, n \in \mathbf{N}^+$ with $n > 2$. Then
+    \[
+        a^n + b^n \neq c^n\ .\qedhere
+    \]
+\end{theorem}
+
+Since the proof is straightforward, it is omitted. Nonetheless, we present a proof in order to show off the proof environment.
+
+\begin{proof}[Proof of \Cref{thm:fermatsTheorem}]
+    Unfortunately, there is too little space in this PDF for the proof.
+\end{proof}
+
+You can have very expressive and fancy enumerations from the package \textsf{enumitem}. Again, we can easily reference an item like \cref{item:talkingAboutLabels}.
+\begin{enumerate}[label = (\roman*), align = left, labelwidth = 2 em, labelsep = 0 em]
+    \item The labels of the items can be nicely chosen.\label{item:talkingAboutLabels}
+    
+    \item Note how the labels are left-aligned. This does not look good but should demonstrate what is easily possible.
+\end{enumerate}
+We can even interrupt this enumeration and easily resume it immediately.
+\begin{enumerate}[resume*]
+    \item We continue where we left off.
+\end{enumerate}
+
+\begin{table}[t]
+    \centering
+    \caption{This is a nicely formatted table. Thus, the caption is \emph{above} the content. If not, the data could not be interpreted meaningfully. As a rule of thumb, never use vertical lines\footnote[0][-0.2]{Except you know what you are doing.}, and use horizontal lines sparingly. If you think that a table is illegible and thus needs vertical lines, then your spacing between columns is wrong and should be increased. Always use some whitespace first before you use some additional lines.}
+    \label{tab:textAndNumbers}
+    \begin{tabular}{p{0.75\textwidth}>{\bfseries}r}
+        \toprule
+        Text                                                                & Number\\\midrule
+        This is some text. Thus, it is left-aligned.                        & 0\\
+        Numbers are right-aligned.                                          & 1\\
+        The numbers are formatted in bold using the package \textsf{array}. & 2\\\bottomrule
+    \end{tabular}
+\end{table}
+
+Recall that \Cref{thm:variableDrift} was as follows:
+
+\variableDrift*
+
+Note that the reference above still refers to the first occurrence of the theorem. However, the theorem is repeated without any noise. That is, it is identical to the other occurrence.
+
+From the next page on, other than a warp figure and some filler text, there is not much more to see. Thank you very much for taking your time and reading so far. I hope you got an impression of what this template is capable of. Have fun using it, and create a great thesis!
+
+\section{Senseless Section}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \vspace*{-4 ex}
+    \includegraphics[width = 0.25\textwidth]{core/title_page/logo_HPI.pdf}
+    \caption{The HPI logo is sneaked in between text.}
+    \label{fig:HPIwrap}
+\end{wrapfigure}
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.
+
+At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
+
+Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo.

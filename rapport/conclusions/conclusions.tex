@@ -1,0 +1,41 @@
+Ce projet, initié avec l'ambition de moderniser le support client via l'intelligence artificielle générative, a permis de valider une architecture novatrice combinant la rigueur des graphes de connaissances et la flexibilité des grands modèles de langage.
+
+\section{Bilan du projet}
+
+Au terme de ce cycle de développement, le bilan technique et fonctionnel est extrêmement positif. L'\gls{agentia} déployé répond aux exigences de complexité du marché e-commerce moderne.
+
+\begin{itemize}
+    \item \textbf{Objectifs Techniques Atteints :} L'architecture hybride (NLU + GraphRAG + VectorRAG) est pleinement opérationnelle. L'orchestrateur réussit à router intelligemment 100\% des requêtes testées vers le moteur le plus adapté, garantissant une réponse précise sans latence excessive.
+    \item \textbf{Innovation Validée :} L'intégration de \gls{neo4j} et de Gemini Flash a démontré qu'il est possible de dépasser les limites du RAG classique. L'agent ne se contente plus de "retrouver" l'information, il est capable de la "connecter" pour répondre à des questions de compatibilité ou de hiérarchie produit.
+    \item \textbf{Expérience Utilisateur :} Grâce à la gestion de la mémoire contextuelle (\gls{redis}) et à l'analyse de sentiment, l'interaction est fluide et empathique, rompant avec la rigidité des chatbots traditionnels.
+\end{itemize}
+
+Nous avons réussi à transformer un défi technologique complexe (la convergence Neuro-Symbolique) en une solution logicielle concrète, conteneurisée et prête au déploiement.
+
+\section{Recommandations}
+
+Sur la base des enseignements tirés durant les phases de développement et de test, nous formulons les recommandations stratégiques suivantes pour une mise en production (Go-Live) :
+
+\begin{enumerate}
+    \item \textbf{Industrialisation de l'Ingestion :} Le pipeline actuel (\texttt{ingest\_graph.py}) est manuel. Il est crucial de développer des connecteurs automatisés vers le PIM (\textit{Product Information Management}) de l'entreprise pour que le Graphe se mette à jour en temps réel à chaque modification de catalogue.
+    \item \textbf{Gouvernance des Données :} La qualité du GraphRAG dépend directement de la qualité des données sources. Une phase de nettoyage et de structuration des fiches produits en amont est recommandée pour maximiser la précision des relations extraites par le \gls{llm}.
+    \item \textbf{Sécurité et "Guardrails" :} Avant d'ouvrir l'agent au grand public, il est impératif d'intégrer une couche de sécurité (comme \textit{Nvidia NeMo Guardrails}) pour prévenir les injections de prompt et garantir que l'agent ne puisse pas être manipulé pour générer du contenu inapproprié.
+\end{enumerate}
+
+\section{Perspectives d'évolution}
+
+Ce projet pose les fondations d'un écosystème IA plus large. Plusieurs pistes d'évolution sont envisageables à court et moyen terme :
+
+\subsection{Voice Ops \& Multimodalité}
+L'ajout de capacités vocales (Speech-to-Text avec Whisper, Text-to-Speech) permettrait de déployer l'agent sur des canaux téléphoniques, offrant une accessibilité totale, notamment pour les utilisateurs préférant l'interaction orale en dialecte arabe.
+
+\subsection{Agent "Actif" (Action Model)}
+Actuellement consultatif, l'agent pourrait devenir transactionnel. En lui donnant accès en écriture à l'\gls{api} de commande (via le concept d'Agent Tools de \gls{langchain}), il pourrait non seulement suivre un colis, mais aussi modifier une adresse de livraison ou initier un remboursement de manière autonome.
+
+\subsection{Scalabilité via Kubernetes}
+L'architecture Docker Compose actuelle est idéale pour un MVP. Pour supporter la charge de milliers d'utilisateurs simultanés, une migration vers un orchestrateur de conteneurs comme Kubernetes (K8s) sera nécessaire, permettant l'auto-scaling des instances de l'API Backend.
+
+\vspace{1cm}
+\begin{center}
+    \textit{Ce projet démontre que l'avenir du support client réside dans l'alliance de la donnée structurée et de l'IA générative, ouvrant la voie à des interactions homme-machine enfin naturelles et efficientes.}
+\end{center}

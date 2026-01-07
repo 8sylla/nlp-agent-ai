@@ -1,0 +1,72 @@
+\label{annexe:docker}
+
+Le fichier \texttt{docker-compose.yml} ci-dessous illustre l'architecture micro-services complète, incluant la base de données de graphe Neo4j et la gestion des variables d'environnement sécurisées.
+
+\begin{lstlisting}[language=bash, caption=Manifeste Docker Compose (Architecture Complete)]
+services:
+  # Base de donnees pour les logs et les vecteurs (RAG)
+  postgres:
+    image: pgvector/pgvector:pg15
+    container_name: agent_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_DB: agent_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Cache et Queue
+  redis:
+    image: redis:alpine
+    container_name: agent_redis
+    ports:
+      - "6379:6379"
+
+  neo4j:
+    image: neo4j:5.15.0
+    container_name: agent_neo4j
+    ports:
+      - "7474:7474" # Interface Admin (Browser)
+      - "7687:7687" # Port Bolt (Pour l'API Python)
+    environment:
+      NEO4J_AUTH: neo4j/password1234 # User/Pass basique
+      # Plugins pour des algos avances
+      NEO4J_PLUGINS: '["apoc", "graph-data-science"]'
+    volumes:
+      - neo4j_data:/data
+
+  # Notre API (Backend)
+  api:
+    build: ./backend
+    container_name: agent_api
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://admin:adminpassword@postgres:5432/agent_db
+      # Connexion Neo4j
+      - NEO4J_URI=bolt://neo4j:7687
+      - NEO4J_USERNAME=neo4j
+      - NEO4J_PASSWORD=password1234
+      # CRITIQUE : Il faut une cle Google pour construire le graphe
+      - LLM_PROVIDER=${LLM_PROVIDER}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=${GROQ_MODEL}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - GOOGLE_MODEL=${GOOGLE_MODEL}
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+      - neo4j
+
+volumes:
+  postgres_data:
+  neo4j_data:
+
+\end{lstlisting}

@@ -1,0 +1,73 @@
+% This file contains the layout of the title page. It is a generous interpretation of the demo page provided by the MNF of the University of Potsdam.
+
+% This page uses a different geometry, as the content will be centered (not including the binding correction).
+\ifprintVersion
+    \ifprofessionalPrint
+        \newgeometry
+        {
+            textwidth = 134 mm,
+            textheight = 220 mm,
+            top = 38 mm + \extraborderlength,
+            inner = 38 mm + \mybindingcorrection + \extraborderlength,
+        }
+    \else
+        \newgeometry
+        {
+            textwidth = 134 mm,
+            textheight = 220 mm,
+            top = 38 mm,
+            inner = 38 mm + \mybindingcorrection,
+        }
+    \fi
+\else
+    \newgeometry
+    {
+        textwidth = 134 mm,
+        textheight = 220 mm,
+        top = 38 mm,
+        inner = 38 mm,
+    }
+\fi
+
+% The format of the title page.
+\begin{titlepage}
+    \sffamily
+    \begin{center}
+        \includegraphics[height = 4 cm]{core/title_page/logo_UP.pdf} \hfill \includegraphics[height = 4 cm]{core/title_page/logo_HPI.pdf}\\
+        \vfil
+        {\LARGE
+            \rule[1 ex]{\textwidth}{1.5 pt}
+            \onehalfspacing\printTitleBold\\[1 ex]
+            {\vspace*{-1 ex}\Large \printGermanTitle}\\
+            \rule[-1 ex]{\textwidth}{1.5 pt}
+        }
+        GitHub : \href{https://github.com/8sylla/nlp-agent-ai.git}{github.com/8sylla/nlp-agent-ai.git}
+        \vfil
+        {\Large\textbf{\printAuthor}}
+        \vfil
+        {\large Université Abdelmalek Essaâdi \\[0.25 ex]
+        École Nationale des Sciences Appliquées de Tanger}\\[0.25 ex]
+        \bigskip
+        {\Large Génie Informatique - 3e Année}\\[0.5 ex]
+        {\large\emph{(Système d'information)}}\\
+        \bigskip
+        {\large Module \\[0.25 ex]
+        \printProgram}
+        \vfil
+        {\large \printDateReceived{}}
+    \end{center}
+    
+    \vfil
+    \begin{table}[h]
+        \centering
+        \large
+        \sffamily 
+        {\def\arraystretch{1.2}
+            \begin{tabular}{>{\bfseries}p{3.8 cm}p{5.3 cm}}
+                Encadré Par               & \printNameOfSupervisor
+            \end{tabular}
+        }
+    \end{table}
+\end{titlepage}
+
+\restoregeometry

@@ -1,0 +1,71 @@
+\label{annexe:ingestion}
+
+Ce script Python est responsable de la transformation des données non structurées en Graphe de Connaissances. Il utilise les modèles \texttt{Gemini/Llama 3} pour extraire les entités et relations.
+
+\begin{lstlisting}[language=python, caption=Script d'ingestion et de construction du Graphe (ingest\_graph.py)]
+# Configuration Neo4j
+os.environ["NEO4J_URI"] = "bolt://neo4j:7687"
+os.environ["NEO4J_USERNAME"] = "neo4j"
+os.environ["NEO4J_PASSWORD"] = "password1234"
+
+# Donnees brutes 
+raw_text = [
+    """
+    """
+]
+
+def ingest_graph():
+    print("Connexion a Neo4j...")
+    graph = Neo4jGraph()
+
+    provider = os.getenv("LLM_PROVIDER", "google").lower()
+    if provider == "groq":
+        print("Ingestion via GROQ...")
+        llm = ChatGroq(
+            model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
+            temperature=0
+        )
+    else:
+        print("Ingestion via GOOGLE...")
+        llm = ChatGoogleGenerativeAI(
+            model=os.getenv("GOOGLE_MODEL", "gemini-2.5-flash"),
+            temperature=0
+        )
+    
+    llm_transformer = LLMGraphTransformer(llm=llm)
+
+    print("Analyse du texte (Gemini)...")
+    documents = [Document(page_content=text) for text in raw_text]
+    
+    # Transformation
+    try:
+        graph_documents = llm_transformer.convert_to_graph_documents(documents)
+    except Exception as e:
+        print(f"Erreur Extraction LLM: {e}")
+        return
+
+    # --- AFFICHAGE DU RESUME AVANT INSERTION ---
+    nodes = graph_documents[0].nodes
+    rels = graph_documents[0].relationships
+    
+    print(f"\n RESUME DE L'EXTRACTION :")
+    print(f"   Noeuds trouves : {len(nodes)}")
+    print(f"   Relations trouvees : {len(rels)}")
+    
+    print("\n APERÇU DES RELATIONS (5 premieres) :")
+    for i, r in enumerate(rels[:5]):
+        print(f"   ({r.source.id}) --[{r.type}]--> ({r.target.id})")
+
+    print("\n Sauvegarde dans Neo4j...")
+    graph.add_graph_documents(graph_documents)
+    graph.refresh_schema()
+    
+    count_query = "MATCH (n) RETURN count(n) as count"
+    result = graph.query(count_query)
+    print(f"   Total Nœuds en base : {result[0]['count']}")
+    
+    print("\n Ingestion terminee avec succes !")
+
+if __name__ == "__main__":
+    ingest_graph()
+\end{lstlisting}

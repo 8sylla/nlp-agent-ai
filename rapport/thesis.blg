@@ -1,0 +1,21 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'thesis.blg'
+[153] biber-MSWIN64:342> INFO - === 
+[217] Biber.pm:421> INFO - Reading 'thesis.bcf'
+[373] Biber.pm:1002> INFO - Found 8 citekeys in bib section 0
+[387] Biber.pm:4487> INFO - Processing section 0
+[399] Biber.pm:4678> INFO - Looking for bibtex file 'references/strings.bib' for section 0
+[519] bibtex.pm:1713> INFO - LaTeX decoding ...
+[529] bibtex.pm:1519> INFO - Found BibTeX data source 'references/strings.bib'
+[561] Biber.pm:4678> INFO - Looking for bibtex file 'references/references.bib' for section 0
+[692] bibtex.pm:1713> INFO - LaTeX decoding ...
+[732] bibtex.pm:1519> INFO - Found BibTeX data source 'references/references.bib'
+[900] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[900] UCollate.pm:68> INFO - Overriding locale 'fr-FR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[900] Biber.pm:4307> INFO - Sorting list 'anyt/global//global/global/global' of type 'entry' with template 'anyt' and locale 'fr-FR'
+[901] Biber.pm:4313> INFO - No sort tailoring available for locale 'fr-FR'
+[919] bbl.pm:676> INFO - Writing 'thesis.bbl' with encoding 'ascii'
+[920] bbl.pm:677> INFO - Converting UTF-8 to TeX macros on output to .bbl
+[930] bbl.pm:779> INFO - Output to thesis.bbl
+[931] Biber.pm:132> WARN - BibTeX subsystem: C:\Users\DELL\AppData\Local\Temp\biber_tmp_wrdG\33e59b5ca9ec342068223d604c3f8d55_43724.utf8, line 3, warning: 20 characters of junk seen at toplevel
+[931] Biber.pm:134> INFO - WARNINGS: 1

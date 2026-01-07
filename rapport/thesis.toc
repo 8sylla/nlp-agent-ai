@@ -1,0 +1,60 @@
+\babel@toc {french}{}\relax 
+\contentsline {chapter}{\nonumberline Remerciements}{iii}{chapter*.2}%
+\contentsline {chapter}{\nonumberline Résumé}{v}{chapter*.3}%
+\contentsline {section}{\numberline {1}Contexte et Enjeux}{v}{section.0.1}%
+\contentsline {section}{\numberline {2}La Solution : Une Architecture Cognitive Hybride}{vi}{section.0.2}%
+\contentsline {section}{\numberline {3}Méthodologie et Réalisations Techniques}{vi}{section.0.3}%
+\contentsline {section}{\numberline {4}Résultats et Impact}{vii}{section.0.4}%
+\contentsline {section}{\numberline {5}Conclusion}{vii}{section.0.5}%
+\contentsline {chapter}{Glossaire et Définitions}{ix}{section*.5}%
+\contentsline {chapter}{\nonumberline Table des mati\`eres}{xiii}{chapter*.7}%
+\contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Contexte du projet}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objectifs}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Problématique}{3}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Analyse et Méthodologie}{5}{chapter.2}%
+\contentsline {section}{\numberline {2.1}État de l'art}{5}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Approche Symbolique et Déterministe}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}L'Avènement du RAG Vectoriel}{5}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}L'Émergence du GraphRAG et la Convergence Neuro-Symbolique}{6}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Méthodologie adoptée}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Outils et Ressources}{7}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Stack Logicielle (Software)}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Infrastructure de Données (Data Stack)}{8}{subsection.2.3.2}%
+\contentsline {chapter}{\numberline {3}Réalisation et Résultats}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Description de la solution}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Architecture de l'Orchestrateur Hybride}{9}{subsection.3.1.1}%
+\contentsline {subsubsection}{\nonumberline 1. Gestion de la Mémoire et Reformulation}{9}{subsubsection*.13}%
+\contentsline {subsubsection}{\nonumberline 2. Détection d'Intention Transactionnelle}{9}{subsubsection*.16}%
+\contentsline {subsubsection}{\nonumberline 3. Raisonnement GraphRAG}{10}{subsubsection*.18}%
+\contentsline {subsubsection}{\nonumberline 4. Recherche Sémantique (VectorRAG)}{10}{subsubsection*.21}%
+\contentsline {subsection}{\numberline {3.1.2}Flexibilité Architecturale : Agnosticisme LLM}{11}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Modélisation des Connaissances (GraphRAG)}{11}{subsection.3.1.3}%
+\contentsline {section}{\numberline {3.2}Analyse des résultats}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Performance Comparative : VectorRAG vs GraphRAG}{11}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Latence et Expérience Utilisateur}{12}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Difficultés rencontrées et Résolutions}{12}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Gestion des Quotas et Transition Gemini/Groq}{12}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}L'Enfer des Dépendances ("Dependency Hell")}{12}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Hallucinations du GraphRAG}{12}{subsection.3.3.3}%
+\contentsline {chapter}{\numberline {4}Conclusion et Perspectives}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Bilan du projet}{17}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Recommandations}{17}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Perspectives d'évolution}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Voice Ops \& Multimodalité}{18}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Agent "Actif" (Action Model)}{18}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Scalabilité via Kubernetes}{18}{subsection.4.3.3}%
+\def \@chapapp {\appendixname }
+\contentsline {chapter}{\numberline {A}Infrastructure de Conteneurisation}{21}{appendix.A}%
+\contentsline {chapter}{\numberline {B}Pipeline d'Ingestion GraphRAG}{23}{appendix.B}%
+\contentsline {chapter}{\numberline {C}Logique de l'Orchestrateur}{25}{appendix.C}%
+\contentsline {chapter}{\numberline {D}Documentation API (Endpoints)}{27}{appendix.D}%
+\contentsline {chapter}{\numberline {E}Galerie des Diagrammes d'Architecture}{29}{appendix.E}%
+\contentsline {section}{\numberline {E.1}Vue d'Ensemble du Système}{29}{section.E.1}%
+\contentsline {section}{\numberline {E.2}Modélisation de la Connaissance (Ontologie)}{30}{section.E.2}%
+\contentsline {section}{\numberline {E.3}Chronologie des Échanges}{31}{section.E.3}%
+\contentsline {section}{\numberline {E.4}Pipeline d'Ingestion (ETL)}{32}{section.E.4}%
+\contentsline {section}{\numberline {E.5}Logique Décisionnelle (Le Cerveau)}{33}{section.E.5}%
+\contentsline {section}{\numberline {E.6}Dashboard des logs de l'admin}{34}{section.E.6}%
+\contentsline {chapter}{Bibliography}{37}{chapter*.31}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
