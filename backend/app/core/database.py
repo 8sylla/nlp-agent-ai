@@ -52,7 +52,6 @@ def init_db():
     conn.close()
     print("✅ Base de données initialisée avec pgvector.")
 
-# NOUVEAU : Fonction pour logger une interaction
 def log_conversation(user_msg, bot_resp, lang, sentiment, intent):
     try:
         conn = get_db_connection()
@@ -60,12 +59,15 @@ def log_conversation(user_msg, bot_resp, lang, sentiment, intent):
         cur.execute(
             """
             INSERT INTO conversations (user_message, bot_response, language, sentiment_score, intent)
-            VALUES (%s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s) RETURNING id
             """,
             (user_msg, bot_resp, lang, sentiment, intent)
         )
+        row_id = cur.fetchone()[0] # <--- ON RÉCUPÈRE L'ID
         conn.commit()
         cur.close()
         conn.close()
+        return row_id
     except Exception as e:
         print(f"❌ Erreur logging DB: {e}")
+        return None
