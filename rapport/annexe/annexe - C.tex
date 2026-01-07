@@ -1,0 +1,39 @@
+\label{annexe:orchestrator}
+
+Extrait du cœur logique de l'agent, montrant la gestion de la mémoire et la stratégie de repli (Fallback) entre le Graphe et le Vecteur.
+
+\begin{lstlisting}[language=python, caption=Algorithme de décision (orchestrator.py - Extrait)]
+async def process_user_message(text: str, session_id: str):
+    
+    # 1. Gestion de la Memoire (Redis)
+    memory = ConversationMemory(session_id)
+    history = memory.get_history()
+    
+    # Reformulation contextuelle via Gemini
+    standalone_text = text
+    if history:
+        standalone_text = contextualizer.rewrite(history, text)
+
+    # 2. Strategie GraphRAG (Prioritaire)
+    print("Tentative 1 : GraphRAG (Neo4j)...")
+    graph_answer = graph_engine.query(standalone_text)
+    
+    if graph_answer and "je ne sais pas" not in graph_answer.lower():
+        final_response = graph_answer
+    
+    # 3. Strategie VectorRAG (Fallback)
+    else:
+        print("GraphRAG muet. Tentative 2 : VectorRAG...")
+        rag_results = rag_engine.search(standalone_text)
+        
+        if rag_results and rag_results[0]['score'] > 0.25:
+            final_response = rag_results[0]['content']
+        else:
+            final_response = "Je ne trouve pas l'information."
+
+    # 4. Sauvegarde
+    memory.add_message("user", text)
+    memory.add_message("ai", final_response)
+    
+    return final_response
+\end{lstlisting}

@@ -1,0 +1,143 @@
+% Définition d'un terme technique
+\newglossaryentry{backend}{
+    name={Back-end},
+    description={Partie invisible d'une application informatique, responsable de la gestion des données et de la logique métier.}
+}
+
+% Définition d'un acronyme
+\newacronym{ia}{IA}{Intelligence Artificielle}
+
+\newglossaryentry{agentia}{
+    name={Agent IA (AI Agent)},
+    description={Système autonome capable de percevoir son environnement, de raisonner et d'agir pour atteindre un objectif donné. Dans ce projet, l'agent combine plusieurs moteurs (NLU, LLM) pour résoudre les requêtes clients.}
+}
+
+\newglossaryentry{api}{
+    name={API (Application Programming Interface)},
+    description={Interface logicielle permettant à deux applications de communiquer. Ici, l'API FastAPI expose les services de l'agent au Frontend.}
+}
+
+\newglossaryentry{architecturehybride}{
+    name={Architecture Hybride},
+    description={Approche combinant plusieurs paradigmes technologiques (symbolique avec les graphes et statistique avec les réseaux de neurones) pour pallier les faiblesses de chacun.}
+}
+
+\newglossaryentry{chunking}{
+    name={Chunking},
+    description={Processus de découpage d'un texte long en segments plus courts afin de respecter la fenêtre de contexte des modèles de langage et d'optimiser la recherche vectorielle.}
+}
+
+\newglossaryentry{cypher}{
+    name={Cypher},
+    description={Langage de requête déclaratif pour les bases de données de graphes (spécifique à Neo4j), permettant de créer et d'interroger des nœuds et des relations de manière intuitive (similaire au SQL).}
+}
+
+\newglossaryentry{conteneurisation}{
+    name={Conteneurisation (Docker)},
+    description={Méthode de déploiement logiciel regroupant une application et ses dépendances dans un conteneur isolé, garantissant une exécution identique quel que soit l'environnement.}
+}
+
+\newglossaryentry{embedding}{
+    name={Embedding (Plongement Lexical)},
+    description={Représentation mathématique d'un mot ou d'une phrase sous forme de vecteur de nombres réels. Deux phrases de sens proche auront des vecteurs mathématiquement proches.}
+}
+
+\newglossaryentry{erp}{
+    name={ERP (Enterprise Resource Planning)},
+    description={Système d'information gérant l'ensemble des processus opérationnels d'une entreprise. Notre agent simule une connexion à un ERP pour récupérer les statuts de commande.}
+}
+
+\newglossaryentry{graphrag}{
+    name={GraphRAG (Graph Retrieval-Augmented Generation)},
+    description={Évolution du RAG classique qui utilise une base de connaissances structurée sous forme de graphe pour permettre au LLM de raisonner sur les relations entre les entités.}
+}
+
+\newglossaryentry{hallucination}{
+    name={Hallucination},
+    description={Phénomène où un modèle de langage génère une réponse grammaticalement correcte et plausible, mais factuellement fausse ou inventée. Le RAG est utilisé pour réduire ce risque.}
+}
+
+\newglossaryentry{inference}{
+    name={Inférence},
+    description={Phase d'utilisation d'un modèle d'IA entraîné pour faire des prédictions sur de nouvelles données (par opposition à la phase d'entraînement).}
+}
+
+\newglossaryentry{ingenierieconnaissances}{
+    name={Ingénierie des Connaissances (Knowledge Engineering)},
+    description={Discipline visant à modéliser, structurer et intégrer des connaissances explicites dans un système informatique (via des ontologies ou des graphes) pour permettre le raisonnement automatique.}
+}
+
+\newglossaryentry{knowledgegraph}{
+    name={Knowledge Graph (Graphe de Connaissances)},
+    description={Base de données représentant l'information sous forme de réseau d'entités (nœuds) et de relations (arêtes), offrant une structure sémantique riche.}
+}
+
+\newglossaryentry{llm}{
+    name={LLM (Large Language Model)},
+    description={Modèle d'IA entraîné sur d'immenses quantités de texte, capable de comprendre et de générer du langage humain (ex: GPT-4, Google Gemini).}
+}
+
+\newglossaryentry{langchain}{
+    name={LangChain},
+    description={Framework open-source facilitant le développement d'applications basées sur des LLM, notamment pour l'orchestration des chaînes de traitement et la gestion de la mémoire.}
+}
+
+\newglossaryentry{neo4j}{
+    name={Neo4j},
+    description={Système de gestion de base de données orientée graphe, leader du marché, utilisé ici pour stocker les relations complexes entre les produits.}
+}
+
+\newglossaryentry{ner}{
+    name={NER (Named Entity Recognition)},
+    description={Sous-tâche du NLP consistant à identifier et classer des entités nommées (personnes, lieux, numéros de commande) dans un texte non structuré.}
+}
+
+\newglossaryentry{nlp}{
+    name={NLP (Natural Language Processing)},
+    description={Domaine de l'IA traitant de l'interaction entre les ordinateurs et le langage humain.}
+}
+
+\newglossaryentry{nlu}{
+    name={NLU (Natural Language Understanding)},
+    description={Sous-domaine du NLP focalisé sur la compréhension de l'intention et du sens derrière le texte (ex: classifier ``Je veux mon colis'' en intention TRACK\_ORDER).}
+}
+
+\newglossaryentry{ontologie}{
+    name={Ontologie},
+    description={Modèle formel décrivant les concepts d'un domaine et leurs relations. C'est la ``grammaire'' qui structure un graphe de connaissances.}
+}
+
+\newglossaryentry{orchestrateur}{
+    name={Orchestrateur},
+    description={Composant logiciel central qui coordonne les interactions entre les différents modules (LLM, Base de données, API) pour traiter une requête utilisateur de bout en bout.}
+}
+
+\newglossaryentry{promptengineering}{
+    name={Prompt Engineering},
+    description={Art de concevoir des instructions (prompts) optimales pour guider un LLM vers la réponse ou le format souhaité.}
+}
+
+\newglossaryentry{rag}{
+    name={RAG (Retrieval-Augmented Generation)},
+    description={Technique consistant à enrichir le prompt d'un LLM avec des données externes pertinentes récupérées en temps réel, avant de générer une réponse.}
+}
+
+\newglossaryentry{redis}{
+    name={Redis},
+    description={Système de stockage de données en mémoire ultra-rapide, utilisé ici pour gérer la session utilisateur et l'historique de conversation.}
+}
+
+\newglossaryentry{vectordatabase}{
+    name={Vector Database (Base de Données Vectorielle)},
+    description={Base de données optimisée pour stocker et interroger des vecteurs (embeddings), permettant la recherche par similarité sémantique (ex: PostgreSQL avec pgvector).}
+}
+
+\newglossaryentry{websemantique}{
+    name={Web Sémantique},
+    description={Vision du Web où les données sont structurées et liées de manière à être comprises et traitées automatiquement par des machines (lié aux technologies RDF, OWL, Graphes).}
+}
+
+\newglossaryentry{websocket}{
+    name={WebSocket},
+    description={Protocole de communication réseau permettant des échanges bidirectionnels et temps réel entre un client et un serveur via une connexion TCP unique.}
+}

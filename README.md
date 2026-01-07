@@ -177,3 +177,18 @@ ai-support-agent/
 ├── Makefile                 # Automation shortcuts
 └── README.md                # You are here
 ```
+---
+
+## Compilation du rapport
+
+## Prérequis
+Avant de compiler le rapport, vous devez installer un compilateur **LaTeX** tel que :
+- [TeX Live](https://www.tug.org/texlive/)  
+- ou toute autre distribution LaTeX compatible (MiKTeX, etc.).
+
+## Étapes de compilation
+1. Assurez-vous que le compilateur LaTeX est correctement installé sur votre machine.  
+2. Rendez-vous dans le dossier **`rapport/`** du projet.  
+3. Exécutez le script suivant :  
+   ```bash
+   compiler.bat

@@ -1,0 +1,318 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\preamble{%
+\newcommand{\bibciac}[2]{Proceedings of the #1 Conference on Algorithms and Complexity (CIAC'#2)} \newcommand{\bibdac}[2]{Proceedings of the #1 Annual Design Automation Conference (DAC'#2)} \newcommand{\bibinvisau}[1]{Proceedings of the Australian Symposium on Information Visualisation (invis.au #1)} \newcommand{\bibieeepdp}[2]{Proceedings of the #1 IEEE Symposium on Parallel and Distributed Processing #2} \newcommand{\bibieeecs}[1]{Proceedings of the IEEE International Symposium on Circuits and Systems #1} \newcommand{\bibcccg}[2]{Proceedings of the #1 Canadian Conference on Computational Geometry (CCCG'#2)} \newcommand{\bibswat}[2]{Proceedings of the #1 Scandinavian Workshop on Algorithm Theory (SWAT'#2)} \newcommand{\bibipco}[2]{Proceedings of the #1 International Conference on Integer Programming and Combinatorial Optimization (IPCO'#2)} \newcommand{\bibsofsem}[2]{Proceedings of the #1 Conference on Current Trends in Theory and Practice of Computer Science (SOFSEM'#2)} \newcommand{\bibstoc}[2]{Proceedings of the #1 Annual ACM Symposium on Theory of Computing (STOC'#2)} \newcommand{\bibfocs}[2]{Proceedings of the #1 Annual Symposium on Foundations of Computer Science (FOCS'#2)} \newcommand{\bibsoda}[2]{Proceedings of the #1 Annual ACM-SIAM Symposium on Discrete Algorithms (SODA'#2)} \newcommand{\bibgd}[2]{Proceedings of the #1 International Symposium on Graph Drawing (GD'#2)} \newcommand{\bibinfovis}[1]{Proceedings of the IEEE Symposium on Information Visualization (InfoVis'#1)} \newcommand{\bibvis}[1]{Proceedings of the IEEE Conference on Visualization (Vis'#1)} \newcommand{\bibpvis}[1]{Proceedings of the IEEE Pacific Visualisation Symposium (PacificVis'#1)} \newcommand{\bibsoftvis}[2]{Proceedings of the #1 ACM Symposium on Software Visualization (SoftVis'#2)} \newcommand{\bibeurocg}[2]{Proceedings of the #1 European Workshop on Computational Geometry (EuroCG'#2)} \newcommand{\bibsocg}[2]{Proceedings of the #1 Annual Symposium on Computational Geometry (SoCG'#2)} \newcommand{\bibwads}[2]{Proceedings of the #1 International Symposium on Algorithms and Data Structures (WADS'#2)} \newcommand{\bibwg}[2]{Proceedings of the #1 Workshop on Graph-Theoretic Concepts in Computer Science (WG'#2)} \newcommand{\bibgta}{Proceedings of the Conference at Graph Theory and Applications} \newcommand{\bibisaac}[2]{Proceedings of the #1 International Symposium on Algorithms and Computation (ISAAC'#2)} \newcommand{\bibcocoon}[2]{Proceedings of the #1 Annual International Conference on Computing and Combinatorics (COCOON'#2)} \newcommand{\bibtamc}[2]{Proceedings of the #1 Annual Conference on Theory and Applications of Models of Computation (TAMC'#2)} \newcommand{\bibicalp}[2]{Proceedings of the #1 International Colloquium on Automata, Languages and Programming (ICALP'#2)} \newcommand{\biblatin}[2]{Proceedings of the #1 Latin American Symposium (LATIN'#2)} \newcommand{\bibesa}[2]{Proceedings of the #1 Annual European Symposium on Algorithms (ESA'#2)}%
+}
+
+
+\refsection{0}
+  \datalist[entry]{anyt/global//global/global/global}
+    \entry{edge2024}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=189e08257df5e44d50272dc5a180d62e}{%
+           family={Edge},
+           familyi={E\bibinitperiod},
+           given={Darren},
+           giveni={D\bibinitperiod}}}%
+        {{hash=287352c7f17de381db14926f95d9bc52}{%
+           family={Trinh},
+           familyi={T\bibinitperiod},
+           given={Ha},
+           giveni={H\bibinitperiod}}}%
+        {{hash=872bf63005af2647d588def338080b5a}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Nuo},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Microsoft Research}%
+      }
+      \strng{namehash}{3ed2bef9783d9e58731f105d6eec07ac}
+      \strng{fullhash}{2a200129dd73cb243dcf429d1dc0667b}
+      \strng{fullhashraw}{2a200129dd73cb243dcf429d1dc0667b}
+      \strng{bibnamehash}{2a200129dd73cb243dcf429d1dc0667b}
+      \strng{authorbibnamehash}{2a200129dd73cb243dcf429d1dc0667b}
+      \strng{authornamehash}{3ed2bef9783d9e58731f105d6eec07ac}
+      \strng{authorfullhash}{2a200129dd73cb243dcf429d1dc0667b}
+      \strng{authorfullhashraw}{2a200129dd73cb243dcf429d1dc0667b}
+      \field{labelalpha}{ETC+24}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:2404.16130}
+      \field{note}{Introduction du concept de GraphRAG pour am\'{e}liorer le raisonnement global.}
+      \field{title}{From Local to Global: A Graph RAG Approach to Query-Focused Summarization}
+      \field{year}{2024}
+    \endentry
+    \entry{google2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=0f98f9c132af315a916cf1272843fc7b}{%
+           family={{Google DeepMind}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Google AI}%
+      }
+      \strng{namehash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{fullhash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{fullhashraw}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{bibnamehash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{authorbibnamehash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{authornamehash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{authorfullhash}{0f98f9c132af315a916cf1272843fc7b}
+      \strng{authorfullhashraw}{0f98f9c132af315a916cf1272843fc7b}
+      \field{labelalpha}{Goo24}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://deepmind.google/technologies/gemini/flash/
+      \endverb
+      \verb{url}
+      \verb https://deepmind.google/technologies/gemini/flash/
+      \endverb
+    \endentry
+    \entry{hogan2021}{book}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=56f2d88e83f41f6e1f0d9a0197c4c7eb}{%
+           family={Hogan},
+           familyi={H\bibinitperiod},
+           given={Aidan},
+           giveni={A\bibinitperiod}}}%
+        {{hash=019293949e6289df4e3b751f3f9ecf4e}{%
+           family={Blomqvist},
+           familyi={B\bibinitperiod},
+           given={Eva},
+           giveni={E\bibinitperiod}}}%
+        {{hash=ac9f2c71e19d14efaa82ad1908d35843}{%
+           family={Cochez},
+           familyi={C\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Morgan}%
+        {Claypool Publishers}%
+      }
+      \strng{namehash}{d5ce211d54ee18055922d1ccf1a63ea0}
+      \strng{fullhash}{6e616561ee3bc26360cc340fcf9eac9c}
+      \strng{fullhashraw}{6e616561ee3bc26360cc340fcf9eac9c}
+      \strng{bibnamehash}{6e616561ee3bc26360cc340fcf9eac9c}
+      \strng{authorbibnamehash}{6e616561ee3bc26360cc340fcf9eac9c}
+      \strng{authornamehash}{d5ce211d54ee18055922d1ccf1a63ea0}
+      \strng{authorfullhash}{6e616561ee3bc26360cc340fcf9eac9c}
+      \strng{authorfullhashraw}{6e616561ee3bc26360cc340fcf9eac9c}
+      \field{labelalpha}{HBC+21}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-1636392349}
+      \field{note}{Th\'{e}orie fondamentale sur la mod\'{e}lisation des connaissances en graphes.}
+      \field{title}{Knowledge Graphs}
+      \field{year}{2021}
+    \endentry
+    \entry{langchain2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=c8dff8ec7e44a9bf1acdeb832669487e}{%
+           family={{LangChain AI}},
+           familyi={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{fullhash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{fullhashraw}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{bibnamehash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{authorbibnamehash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{authornamehash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{authorfullhash}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \strng{authorfullhashraw}{c8dff8ec7e44a9bf1acdeb832669487e}
+      \field{labelalpha}{Lan24}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Framework d'orchestration utilis\'{e} pour le projet.}
+      \field{title}{LangChain Documentation: Graph Cypher QA Chain}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://python.langchain.com/docs/use_cases/graph/quickstart/
+      \endverb
+      \verb{url}
+      \verb https://python.langchain.com/docs/use_cases/graph/quickstart/
+      \endverb
+    \endentry
+    \entry{lewis2020}{article}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=ecbe786a5668bf643d74bb24fe1c3cfe}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+        {{hash=79978685fd7b37606022b06c0f6419a1}{%
+           family={Perez},
+           familyi={P\bibinitperiod},
+           given={Ethan},
+           giveni={E\bibinitperiod}}}%
+        {{hash=d205faec67355b6e0ec49f82a492324c}{%
+           family={Piktus},
+           familyi={P\bibinitperiod},
+           given={Aleksandra},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Facebook AI Research}%
+      }
+      \strng{namehash}{f238c3bfc4b30650dd17e65c4aadfc66}
+      \strng{fullhash}{aa6cbfbfada4b209505238d4429dc4a3}
+      \strng{fullhashraw}{aa6cbfbfada4b209505238d4429dc4a3}
+      \strng{bibnamehash}{aa6cbfbfada4b209505238d4429dc4a3}
+      \strng{authorbibnamehash}{aa6cbfbfada4b209505238d4429dc4a3}
+      \strng{authornamehash}{f238c3bfc4b30650dd17e65c4aadfc66}
+      \strng{authorfullhash}{aa6cbfbfada4b209505238d4429dc4a3}
+      \strng{authorfullhashraw}{aa6cbfbfada4b209505238d4429dc4a3}
+      \field{labelalpha}{LPP+20}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Advances in Neural Information Processing Systems}
+      \field{note}{D\'{e}finition du concept de RAG (Retrieval-Augmented Generation).}
+      \field{title}{Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks}
+      \field{volume}{33}
+      \field{year}{2020}
+      \field{pages}{9459\bibrangedash 9474}
+      \range{pages}{16}
+    \endentry
+    \entry{neo4j2024}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=b91d20fe47cad9e636a3670f7d2f8b8f}{%
+           family={{Neo4j Inc.}},
+           familyi={N\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Neo4j}%
+      }
+      \strng{namehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{fullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{fullhashraw}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{bibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorbibnamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authornamehash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorfullhash}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \strng{authorfullhashraw}{b91d20fe47cad9e636a3670f7d2f8b8f}
+      \field{labelalpha}{Neo24}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Graph Database for RAG: GraphRAG Manifesto}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://neo4j.com/developer-blog/graphrag-manifesto/
+      \endverb
+      \verb{url}
+      \verb https://neo4j.com/developer-blog/graphrag-manifesto/
+      \endverb
+    \endentry
+    \entry{pgvector}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=36423acfb135ffe286ea438eafcb0bc6}{%
+           family={{PostgreSQL Global Development Group}},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{fullhash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{fullhashraw}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{bibnamehash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{authorbibnamehash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{authornamehash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{authorfullhash}{36423acfb135ffe286ea438eafcb0bc6}
+      \strng{authorfullhashraw}{36423acfb135ffe286ea438eafcb0bc6}
+      \field{labelalpha}{Pos23}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{pgvector: Open-source vector similarity search for Postgres}
+      \field{year}{2023}
+      \verb{urlraw}
+      \verb https://github.com/pgvector/pgvector
+      \endverb
+      \verb{url}
+      \verb https://github.com/pgvector/pgvector
+      \endverb
+    \endentry
+    \entry{vaswani2017}{inproceedings}{}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{3}{}{%
+        {{hash=7f28e84700536646dd6620a0db07ad09}{%
+           family={Vaswani},
+           familyi={V\bibinitperiod},
+           given={Ashish},
+           giveni={A\bibinitperiod}}}%
+        {{hash=62efade83d70f0323fe248755e6c90c5}{%
+           family={Shazeer},
+           familyi={S\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+        {{hash=06649ebab1ea5cac0250746a19764975}{%
+           family={Parmar},
+           familyi={P\bibinitperiod},
+           given={Niki},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Curran Associates}%
+      }
+      \strng{namehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{fullhash}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \strng{fullhashraw}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \strng{bibnamehash}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \strng{authorbibnamehash}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \strng{authornamehash}{ee273ab30cfb889666f8c4d806eb9ce7}
+      \strng{authorfullhash}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \strng{authorfullhashraw}{7cc810834e9ba19dd5f8b0a37be3172d}
+      \field{labelalpha}{VSP+17}
+      \field{sortinit}{V}
+      \field{sortinithash}{afb52128e5b4dc4b843768c0113d673b}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Advances in Neural Information Processing Systems (NeurIPS)}
+      \field{note}{L'article fondateur de l'architecture Transformer utilis\'{e}e par tous les LLM modernes.}
+      \field{title}{Attention Is All You Need}
+      \field{year}{2017}
+      \field{pages}{5998\bibrangedash 6008}
+      \range{pages}{11}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
