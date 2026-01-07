@@ -68,6 +68,7 @@ The system is built on a Microservices architecture, fully containerized with Do
 
 ### 2. Installation
 
+
 Clone the repository:
 ```bash
 git clone https://github.com/8sylla/ai-support-agent.git
