@@ -1,0 +1,106 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- BACKGROUND CONTAINER -->
+    <mxCell id="bg" value="" style="rounded=1;whiteSpace=wrap;html=1;arcSize=4;fillColor=#f8f9fa;strokeColor=#dee2e6;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="120" y="80" width="760" height="520" as="geometry" />
+    </mxCell>
+    <mxCell id="bg_label" value="SYSTÈME AUTONOME HYBRIDE (DOCKER CLUSTER)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#808080;fontSize=11;" vertex="1" parent="1">
+      <mxGeometry x="120" y="50" width="300" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- USER & FRONTEND -->
+    <mxCell id="user" value="Client" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="40" y="270" width="30" height="60" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="frontend" value="&lt;b&gt;Interface Chat&lt;/b&gt;&lt;br&gt;(Next.js 13+)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=1;gradientColor=#ffffff;" vertex="1" parent="1">
+      <mxGeometry x="160" y="270" width="120" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- CORE BRAIN (ORCHESTRATOR) -->
+    <mxCell id="brain_group" value="" style="group" vertex="1" connectable="0" parent="1">
+      <mxGeometry x="340" y="220" width="160" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="brain_bg" value="" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;shadow=1;gradientColor=#ffffff;" vertex="1" parent="brain_group">
+      <mxGeometry width="160" height="160" as="geometry" />
+    </mxCell>
+    <mxCell id="brain_txt" value="&lt;b style=&quot;font-size:14px&quot;&gt;ORCHESTRATEUR&lt;/b&gt;&lt;br&gt;&lt;br&gt;1. Détection Langue&lt;br&gt;2. Sentiment&lt;br&gt;3. Mémoire (Redis)&lt;br&gt;4. Routing" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="brain_group">
+      <mxGeometry x="20" y="30" width="120" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- ENGINE 1: TRANSACTIONAL -->
+    <mxCell id="eng1" value="&lt;b&gt;Moteur Transactionnel&lt;/b&gt;&lt;br&gt;&lt;i&gt;NLU &amp;amp; Regex&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;shadow=0;" vertex="1" parent="1">
+      <mxGeometry x="580" y="140" width="160" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="db1" value="ERP Mock API" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="780" y="140" width="80" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ENGINE 2: GRAPHRAG (THE STAR) -->
+    <mxCell id="eng2" value="&lt;b&gt;Moteur GraphRAG&lt;/b&gt;&lt;br&gt;&lt;i&gt;Raisonnement Complexe&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;shadow=1;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="580" y="270" width="160" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="db2" value="&lt;b&gt;Neo4j&lt;/b&gt;&lt;br&gt;Graphe" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+      <mxGeometry x="780" y="270" width="80" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ENGINE 3: VECTORRAG -->
+    <mxCell id="eng3" value="&lt;b&gt;Moteur Sémantique&lt;/b&gt;&lt;br&gt;&lt;i&gt;Recherche Vectorielle&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;shadow=0;" vertex="1" parent="1">
+      <mxGeometry x="580" y="400" width="160" height="60" as="geometry" />
+    </mxCell>
+    <mxCell id="db3" value="&lt;b&gt;Postgres&lt;/b&gt;&lt;br&gt;Vector" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+      <mxGeometry x="780" y="400" width="80" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- EXTERNAL AI -->
+    <mxCell id="ai_cloud" value="&lt;b&gt;Google Gemini 1.5&lt;/b&gt;&lt;br&gt;(LLM Génératif)" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;shadow=1;" vertex="1" parent="1">
+      <mxGeometry x="640" y="500" width="180" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- CONNECTIONS -->
+    <mxCell id="c1" value="" style="endArrow=classic;html=1;rounded=1;strokeWidth=2;" edge="1" parent="1" source="user" target="frontend">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="c2" value="WebSocket" style="endArrow=classic;startArrow=classic;html=1;rounded=1;strokeWidth=3;strokeColor=#0066CC;" edge="1" parent="1" source="frontend" target="brain_bg">
+      <mxGeometry width="50" height="50" relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- Routing Lines -->
+    <mxCell id="c3" value="1. Suivi ?" style="endArrow=classic;html=1;rounded=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="brain_bg" target="eng1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="c4" value="2. Relationnel ?" style="endArrow=classic;html=1;rounded=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;strokeColor=#9673a6;" edge="1" parent="1" source="brain_bg" target="eng2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="c5" value="3. Fallback ?" style="endArrow=classic;html=1;rounded=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="brain_bg" target="eng3">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- DB Connections -->
+    <mxCell id="d1" value="" style="endArrow=classic;html=1;rounded=1;dashed=1;" edge="1" parent="1" source="eng1" target="db1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="d2" value="Cypher" style="endArrow=classic;html=1;rounded=1;dashed=1;strokeWidth=2;" edge="1" parent="1" source="eng2" target="db2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="d3" value="SQL" style="endArrow=classic;html=1;rounded=1;dashed=1;" edge="1" parent="1" source="eng3" target="db3">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- AI Connections -->
+    <mxCell id="ai1" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=1;entryX=0.55;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;dashed=1;strokeColor=#FF3333;" edge="1" parent="1" source="eng2" target="ai_cloud">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="ai2" value="Reformulation" style="endArrow=classic;html=1;rounded=1;entryX=0.16;entryY=0.55;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.75;exitY=1;exitDx=0;exitDy=0;dashed=1;strokeColor=#FF3333;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="brain_bg" target="ai_cloud">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="460" y="540" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

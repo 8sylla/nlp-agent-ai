@@ -1,0 +1,86 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- AXES -->
+    <mxCell id="axis_x" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;endSize=10;" edge="1" parent="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="120" y="440" as="sourcePoint" />
+        <mxPoint x="720" y="440" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="lbl_x" value="Temps (Années / Croissance)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="600" y="450" width="120" height="20" as="geometry" />
+    </mxCell>
+
+    <mxCell id="axis_y" value="" style="endArrow=classic;html=1;rounded=0;strokeWidth=2;endSize=10;" edge="1" parent="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="120" y="440" as="sourcePoint" />
+        <mxPoint x="120" y="80" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="lbl_y" value="Volume d'interactions" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#666666;rotation=-90;" vertex="1" parent="1">
+      <mxGeometry x="40" y="160" width="140" height="20" as="geometry" />
+    </mxCell>
+
+    <!-- CURVE 1: CUSTOMER REQUESTS (EXPONENTIAL) -->
+    <mxCell id="curve_req" value="" style="curved=1;endArrow=none;html=1;rounded=0;strokeWidth=4;strokeColor=#FF3333;" edge="1" parent="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="120" y="360" as="sourcePoint" />
+        <mxPoint x="680" y="80" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="280" y="360" />
+          <mxPoint x="480" y="280" />
+          <mxPoint x="600" y="120" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="lbl_req" value="Demandes Clients&lt;br&gt;(Exponentiel)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#FF3333;" vertex="1" parent="1">
+      <mxGeometry x="540" y="80" width="120" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- CURVE 2: HUMAN CAPACITY (LINEAR) -->
+    <mxCell id="curve_human" value="" style="curved=1;endArrow=none;html=1;rounded=0;strokeWidth=3;strokeColor=#0066CC;dashed=1;" edge="1" parent="1">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="120" y="380" as="sourcePoint" />
+        <mxPoint x="680" y="300" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="400" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="lbl_human" value="Capacité Humaine&lt;br&gt;(Linéaire)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontColor=#0066CC;" vertex="1" parent="1">
+      <mxGeometry x="680" y="290" width="120" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- PAIN POINT / GAP -->
+    <mxCell id="gap_zone" value="" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#ffe6cc;strokeColor=none;opacity=40;rotation=90;" vertex="1" parent="1">
+      <mxGeometry x="385" y="165" width="230" height="230" as="geometry" />
+    </mxCell>
+    
+    <mxCell id="saturation_point" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#FF0000;strokeColor=#990000;" vertex="1" parent="1">
+      <mxGeometry x="340" y="335" width="20" height="20" as="geometry" />
+    </mxCell>
+    <mxCell id="lbl_saturation" value="&lt;b&gt;Point de Saturation&lt;/b&gt;&lt;br&gt;(Délai de réponse &amp;gt; 24h)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontColor=#333333;" vertex="1" parent="1">
+      <mxGeometry x="370" y="355" width="160" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- SOLUTION INDICATOR -->
+    <mxCell id="brace" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;rotation=-90;size=0.5;" vertex="1" parent="1">
+      <mxGeometry x="530" y="100" width="20" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="lbl_solution" value="&lt;b style=&quot;font-size:14px&quot;&gt;ZONE D'OPPORTUNITÉ IA&lt;/b&gt;&lt;br&gt;Automatisation via GraphRAG&lt;br&gt;&lt;i&gt;Coût marginal nul&lt;/i&gt;" style="text;html=1;strokeColor=#d6b656;fillColor=#fff2cc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="1">
+      <mxGeometry x="420" y="180" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <!-- ARROW CONNECTORS -->
+    <mxCell id="arr1" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;dashed=1;" edge="1" parent="1" source="lbl_saturation" target="saturation_point">
+      <mxGeometry width="50" height="50" relative="1" as="geometry">
+        <mxPoint x="400" y="430" as="sourcePoint" />
+        <mxPoint x="450" y="380" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

@@ -35,25 +35,7 @@ It features **Contextual Memory** (Redis), **Multilingual Support** (French/Arab
 
 The system is built on a Microservices architecture, fully containerized with Docker.
 
-```mermaid
-graph TD
-    User[User / Client] -->|WebSocket| Front[Next.js Frontend]
-    Front -->|JSON| Orch[⚡ Hybrid Orchestrator]
-    
-    subgraph "The Brain (FastAPI)"
-    Orch -->|1. Context| Memory[(Redis Memory)]
-    Orch -->|2. Rewrite| LLM[LLM Gateway (Groq/Google)]
-    Orch -->|3. Decision| Router{Strategy?}
-    end
-    
-    subgraph "Strategies"
-    Router -->|Order Tracking| MockAPI[Mock ERP Service]
-    Router -->|Complex Logic| Graph[GraphRAG (Neo4j)]
-    Router -->|General Info| Vector[VectorRAG (Postgres)]
-    end
-    
-    Graph <--> LLM
-```
+![Architecture](/docs/archi-fulla.png)
 
 ### Key Technical Features
 *   **LLM Agnostic:** Switch between **Google Gemini 2.5 Flash** (Cost-effective) and **Groq Llama 3.3** (Low Latency) via environment variables.
@@ -85,6 +67,7 @@ graph TD
 *   API Keys: **Google Gemini** (Free tier) OR **Groq** (Free beta).
 
 ### 2. Installation
+
 
 Clone the repository:
 ```bash

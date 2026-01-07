@@ -1,0 +1,160 @@
+<mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="1">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- LIFELINES -->
+    
+    <!-- User -->
+    <mxCell id="user" value="User" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+      <mxGeometry x="40" y="80" width="100" height="680" as="geometry" />
+    </mxCell>
+
+    <!-- Frontend -->
+    <mxCell id="front" value="Frontend&#xa;(Next.js)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+      <mxGeometry x="200" y="80" width="100" height="680" as="geometry" />
+    </mxCell>
+
+    <!-- Orchestrator -->
+    <mxCell id="orch" value="Orchestrator&#xa;(FastAPI)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+      <mxGeometry x="360" y="80" width="100" height="680" as="geometry" />
+    </mxCell>
+    <mxCell id="act_orch" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="orch">
+      <mxGeometry x="45" y="70" width="10" height="580" as="geometry" />
+    </mxCell>
+
+    <!-- Gemini (LLM) -->
+    <mxCell id="gemini" value="Gemini API&#xa;(LLM)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+      <mxGeometry x="540" y="80" width="100" height="680" as="geometry" />
+    </mxCell>
+
+    <!-- Neo4j (DB) -->
+    <mxCell id="neo4j" value="Neo4j&#xa;(Graph DB)" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="1">
+      <mxGeometry x="720" y="80" width="100" height="680" as="geometry" />
+    </mxCell>
+
+    <!-- MESSAGES -->
+
+    <!-- 1. User Input -->
+    <mxCell id="msg1" value="1. &quot;Qui fabrique l'iPhone ?&quot;" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1" source="user" target="front">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="90" y="160" as="sourcePoint" />
+        <mxPoint x="170" y="160" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="160" y="160" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 2. WS Send -->
+    <mxCell id="msg2" value="2. WebSocket Message" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1" source="front" target="act_orch">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="250" y="190" as="sourcePoint" />
+        <mxPoint x="330" y="190" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="320" y="190" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 3. Contextualize Req -->
+    <mxCell id="msg3" value="3. Rewrite(History + Query)" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1" source="act_orch" target="gemini">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="420" y="240" as="sourcePoint" />
+        <mxPoint x="500" y="240" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="500" y="240" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="act_gemini1" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="gemini">
+      <mxGeometry x="45" y="160" width="10" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- 4. Contextualize Res -->
+    <mxCell id="msg4" value="4. &quot;Qui fabrique l'iPhone 15 ?&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="gemini" target="act_orch">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="580" y="280" as="sourcePoint" />
+        <mxPoint x="500" y="280" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="500" y="280" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 5. Cypher Req -->
+    <mxCell id="msg5" value="5. Generate Cypher Query" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1" source="act_orch" target="gemini">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="420" y="340" as="sourcePoint" />
+        <mxPoint x="500" y="340" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="500" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="act_gemini2" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="gemini">
+      <mxGeometry x="45" y="260" width="10" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- 6. Cypher Res -->
+    <mxCell id="msg6" value="6. MATCH (n)-[:MANUFACTURED_BY]..." style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="gemini" target="act_orch">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="580" y="380" as="sourcePoint" />
+        <mxPoint x="500" y="380" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="500" y="380" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 7. Neo4j Req -->
+    <mxCell id="msg7" value="7. Execute Cypher" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;" edge="1" parent="1" source="act_orch" target="neo4j">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="420" y="440" as="sourcePoint" />
+        <mxPoint x="500" y="440" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="550" y="440" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="act_neo" value="" style="html=1;points=[];perimeter=orthogonalPerimeter;fillColor=#bac8d3;strokeColor=#23445d;" vertex="1" parent="neo4j">
+      <mxGeometry x="45" y="360" width="10" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- 8. Neo4j Res -->
+    <mxCell id="msg8" value="8. {node: 'Apple'}" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="neo4j" target="act_orch">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="760" y="480" as="sourcePoint" />
+        <mxPoint x="680" y="480" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="560" y="480" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 9. Synthesis (Optional internal step) -->
+    <mxCell id="msg9" value="9. Format Response" style="html=1;verticalAlign=bottom;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="1" source="act_orch" target="act_orch">
+      <mxGeometry x="0.1667" y="10" relative="1" as="geometry">
+        <mxPoint x="425" y="520" as="sourcePoint" />
+        <mxPoint x="425" y="560" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="450" y="520" />
+          <mxPoint x="450" y="550" />
+        </Array>
+        <mxPoint as="offset" />
+      </mxGeometry>
+    </mxCell>
+
+    <!-- 10. Final Response -->
+    <mxCell id="msg10" value="10. &quot;Apple fabrique l'iPhone 15&quot;" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;rounded=0;" edge="1" parent="1" source="act_orch" target="user">
+      <mxGeometry width="80" relative="1" as="geometry">
+        <mxPoint x="410" y="600" as="sourcePoint" />
+        <mxPoint x="90" y="600" as="targetPoint" />
+        <Array as="points">
+          <mxPoint x="230" y="600" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
