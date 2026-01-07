@@ -1,126 +1,185 @@
 import logging
+import re # NOUVEAU : Nécessaire pour trouver plusieurs patterns
 from langdetect import detect
-from app.core.nlu_engine import nlu_engine
-from app.core.rag_engine import rag_engine
-from app.core.mock_services import order_service
-from app.core.sentiment_engine import sentiment_engine
-from app.core.database import log_conversation
 
-# Configuration du logger
+# --- Import des Moteurs IA ---
+from app.core.nlu_engine import nlu_engine          
+from app.core.rag_engine import rag_engine          
+from app.core.graph_engine import graph_engine      
+from app.core.sentiment_engine import sentiment_engine 
+from app.core.contextualizer import contextualizer  
+
+# --- Import des Services & Données ---
+from app.core.mock_services import order_service    
+from app.core.database import log_conversation      
+from app.core.memory import ConversationMemory      
+
 logger = logging.getLogger("orchestrator")
 
-async def process_user_message(text: str):
+async def process_user_message(text: str, session_id: str = "default"):
     """
-    Cerveau central de l'agent :
-    1. Détecte la langue
-    2. Analyse le sentiment (Colère ?)
-    3. Comprend l'intention (NLU) ou cherche dans la base (RAG)
-    4. Construit la réponse
-    5. Loggue la conversation en base de données
+    Cerveau central de l'agent (Architecture Hybride avec Mémoire).
+    Gère désormais les MULTIPLES numéros de commande.
     """
     
-    # --- 1. Détection de Langue ---
+    print(f"\n📨 [Orchestrator] Reçu : '{text}' (Session: {session_id})")
+
+    # =========================================================================
+    # ÉTAPE 1 : GESTION DE LA MÉMOIRE & CONTEXTE
+    # =========================================================================
+    memory = ConversationMemory(session_id)
+    history = memory.get_history() 
+    standalone_text = text
+
+    if history:
+        # On ne reformule PAS si le texte contient explicitement "CMD-", 
+        # car c'est une requête précise qui n'a pas besoin de contexte.
+        if "CMD-" not in text.upper():
+            print("🤔 [Contexte] Reformulation en cours...")
+            try:
+                standalone_text = contextualizer.rewrite(history, text)
+                print(f"📝 [Contexte] Question Reformulée : '{standalone_text}'")
+            except Exception as e:
+                print(f"⚠️ Erreur reformulation: {e}")
+
+    # =========================================================================
+    # ÉTAPE 2 : ANALYSE LINGUISTIQUE
+    # =========================================================================
     try:
         lang = detect(text)
-    except Exception:
-        lang = "fr" # Fallback par défaut
-    
-    print(f"🌍 [Orchestrator] Langue détectée: {lang}")
+    except:
+        lang = "fr"
+    print(f"🌍 [Langue] Détectée: {lang}")
 
-    # --- 2. Analyse de Sentiment ---
     sentiment = sentiment_engine.analyze(text)
-    sentiment_score = sentiment['stars']
-    is_negative = sentiment['is_negative']
+    is_negative = sentiment['stars'] <= 1
     
-    print(f"❤️ [Orchestrator] Sentiment: {sentiment_score}/5 (Négatif: {is_negative})")
-
-    # Préfixe d'empathie si le client est en colère
     prefix = ""
     if is_negative:
         if lang == 'ar':
-            prefix = "نعتذر عن الإزعاج. " # "Nous nous excusons pour le désagrément"
+            prefix = "نعتذر عن الإزعاج. "
         else:
-            prefix = "Je détecte une insatisfaction et je suis navré pour ce désagrément. "
+            prefix = "Je suis navré pour ce désagrément. "
 
-    # --- 3. Compréhension (NLU vs RAG) ---
-    
     intent = "UNKNOWN"
     score = 0.0
-    entities = []
-    
-    # Stratégie :
-    # - Si FR : On utilise le modèle Spacy NLU (car entraîné en FR)
-    # - Si AR : On saute le NLU (sauf si Regex) et on privilégie le RAG sémantique
     
     if lang == 'fr':
         nlu_result = nlu_engine.analyze(text)
         intent = nlu_result["intent"]
         score = nlu_result["confidence"]
-        entities = nlu_result["entities"]
-        print(f"🤖 [Orchestrator] NLU Intent: {intent} ({score:.2f})")
-    
-    # --- 4. Logique de Réponse (Décision) ---
+        # Note: On n'utilise plus entities ici pour les commandes, on va utiliser une regex plus robuste
+
+    # =========================================================================
+    # ÉTAPE 3 : STRATÉGIE DE RÉSOLUTION (CASCADE)
+    # =========================================================================
     
     final_response = ""
+    resolved_intent = intent
 
-    # SCÉNARIO A : Suivi de Commande (Prioritaire)
-    # On vérifie si l'intent est TRACK_ORDER OU si on trouve une entité ORDER_ID via Regex (pour l'Arabe aussi)
-    # Note: nlu_engine.analyze fait déjà une regex ORDER_ID qui marche peu importe la langue si le format est CMD-XXX
+    # -------------------------------------------------------------------------
+    # STRATÉGIE A : TRANSACTIONNEL (MULTI-COMMANDES)
+    # -------------------------------------------------------------------------
     
-    # On force la recherche d'entité ORDER_ID même si NLU a échoué (via regex simple du nlu_engine)
-    if not entities and "CMD-" in text.upper():
-         # Petit hack pour récupérer l'entité si le modèle NLU l'a ratée mais que la regex l'a vue
-         temp_analysis = nlu_engine.analyze(text)
-         entities = temp_analysis["entities"]
+    # 1. Extraction robuste de TOUS les numéros de commande (ex: CMD-123 et CMD-456)
+    # On utilise une Regex qui cherche le pattern CMD- suivi de chiffres/lettres
+    found_order_ids = re.findall(r'CMD-[\w\d]+', text.upper())
+    
+    # Dédoublonnage (au cas où l'utilisateur répète le même ID)
+    found_order_ids = list(set(found_order_ids))
 
-    order_id_entity = next((e["text"] for e in entities if e["label"] == "ORDER_ID"), None)
-
-    if (intent == "TRACK_ORDER" and score > 0.6) or order_id_entity:
-        if order_id_entity:
-            # On a l'ID, on appelle le Mock Service
-            status = order_service.get_order_status(order_id_entity)
-            if status:
-                final_response = prefix + status
-            else:
-                # ID trouvé mais inconnu dans le Mock
-                msg = "لم يتم العثور على هذا الطلب." if lang == 'ar' else "Je ne trouve pas de commande avec ce numéro."
-                final_response = prefix + msg
-        else:
-            # On a l'intention mais pas l'ID
-            msg = "للتتبع، يرجى تقديم رقم الطلب (مثال: CMD-123)." if lang == 'ar' else "Pour suivre votre colis, j'ai besoin de votre numéro de commande (ex: CMD-123)."
-            final_response = prefix + msg
-
-    # SCÉNARIO B : Recherche dans la Base de Connaissances (RAG)
-    # Si ce n'est pas une commande, ou si l'intent est RETURN/TECH, ou si c'est de l'Arabe
-    if not final_response:
-        print("🔍 [Orchestrator] Appel RAG...")
-        rag_results = rag_engine.search(text)
+    if found_order_ids:
+        print(f"📦 [Transactionnel] IDs détectés : {found_order_ids}")
+        responses_list = []
         
-        # On abaisse le seuil de pertinence car le modèle multilingue peut être subtil
-        if rag_results and rag_results[0]['score'] > 0.25:
-            best_answer = rag_results[0]['content']
-            final_response = prefix + best_answer
-        else:
-            print("❌ [Orchestrator] RAG score trop faible.")
+        # On boucle sur chaque commande trouvée
+        for order_id in found_order_ids:
+            status = order_service.get_order_status(order_id)
+            if status:
+                responses_list.append(status)
+            else:
+                msg = f"Commande {order_id} : Introuvable." if lang == 'fr' else f"الطلب {order_id} غير موجود."
+                responses_list.append(msg)
+        
+        # On joint toutes les réponses
+        final_response = prefix + "\n\n".join(responses_list)
+        resolved_intent = "TRACK_ORDER_SUCCESS"
 
-    # SCÉNARIO C : Fallback (Échec)
+    elif intent == "TRACK_ORDER" and score > 0.6:
+        # L'intention est là ("Où est mon colis ?") mais AUCUN ID n'a été trouvé
+        msg = "Pour suivre vos commandes, j'ai besoin des numéros (ex: CMD-123)." if lang == 'fr' else "يرجى تزويدي برقم الطلب للتتبع (مثال: CMD-123)."
+        final_response = prefix + msg
+        resolved_intent = "TRACK_ORDER_ASK_ID"
+
+    # -------------------------------------------------------------------------
+    # STRATÉGIE B : GRAPHRAG (Si ce n'est pas une commande)
+    # -------------------------------------------------------------------------
+    if not final_response:
+        print("🔍 [GraphRAG] Interrogation Neo4j...")
+        try:
+            graph_answer = graph_engine.query(standalone_text)
+            
+            if graph_answer:
+                cleaned = graph_answer.replace("Answer:", "").strip()
+                # Filtre anti-hallucination
+                invalid_triggers = ["je ne sais pas", "i don't know", "no information", "don't have information"]
+                is_valid = len(cleaned) > 5 and not any(trig in cleaned.lower() for trig in invalid_triggers)
+                
+                if is_valid:
+                    print("✅ [GraphRAG] Réponse trouvée !")
+                    final_response = prefix + cleaned
+                    resolved_intent = "GRAPH_QUERY"
+        except Exception as e:
+            print(f"⚠️ Erreur GraphRAG: {e}")
+
+    # -------------------------------------------------------------------------
+    # STRATÉGIE C : VECTORRAG (Fallback)
+    # -------------------------------------------------------------------------
+    if not final_response:
+        print("⚠️ [VectorRAG] Fallback sur Postgres...")
+        rag_results = rag_engine.search(standalone_text)
+        
+        if rag_results and rag_results[0]['score'] > 0.25:
+            print(f"✅ [VectorRAG] Trouvé (Score: {rag_results[0]['score']:.2f})")
+            final_response = prefix + rag_results[0]['content']
+            resolved_intent = "VECTOR_QUERY"
+        else:
+            print("❌ [VectorRAG] Score trop faible.")
+
+    # -------------------------------------------------------------------------
+    # STRATÉGIE D : ÉCHEC TOTAL
+    # -------------------------------------------------------------------------
     if not final_response:
         if lang == 'ar':
-            final_response = prefix + "لست متأكداً من فهمي. هل يمكنك إعادة الصياغة؟ يمكنني تتبع الطلبات أو الإجابة على الأسئلة."
+            final_response = prefix + "لست متأكداً من فهمي. هل يمكنك إعادة الصياغة؟"
         else:
-            final_response = prefix + "Je ne suis pas sûr de comprendre. Pouvez-vous reformuler ? (Je peux suivre vos commandes ou répondre à vos questions)."
+            final_response = prefix + "Je ne trouve pas l'information précise. Pouvez-vous reformuler ?"
+        resolved_intent = "FALLBACK"
 
-    # --- 5. Logging (Sauvegarde) ---
+    # =========================================================================
+    # ÉTAPE 4 : MÉMOIRE & LOGGING
+    # =========================================================================
+    
     try:
-        # On loggue l'échange pour le Dashboard Admin
-        log_conversation(
+        memory.add_message("user", text)
+        memory.add_message("ai", final_response)
+    except Exception as e:
+        print(f"⚠️ Erreur Redis: {e}")
+
+    msg_id = None
+    try:
+        msg_id = log_conversation(
             user_msg=text,
             bot_resp=final_response,
             lang=lang,
-            sentiment=sentiment_score,
-            intent=intent
+            sentiment=sentiment['stars'],
+            intent=resolved_intent
         )
     except Exception as e:
-        print(f"⚠️ Erreur Logging: {e}")
+        print(f"⚠️ Erreur Logging DB: {e}")
 
-    return final_response
+    return {
+        "text": final_response,
+        "id": msg_id,
+        "intent": resolved_intent
+    }

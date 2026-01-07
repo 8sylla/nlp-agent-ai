@@ -1,8 +1,19 @@
+# --- SOCLE IA & DATA ---
 spacy==3.7.2
 sentence-transformers==2.7.0
 psycopg2-binary==2.9.9
 pgvector==0.2.4
-langchain==0.1.0
-langchain-community==0.0.10
 requests==2.31.0
 python-dotenv==1.0.0
+
+# --- STACK LANGCHAIN 0.3+ (Compatible Gemini & Groq) ---
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-core>=0.3.0
+langchain-experimental>=0.3.0
+neo4j>=5.20.0
+tiktoken>=0.7.0
+
+# Providers
+langchain-google-genai>=2.0.0
+langchain-groq>=0.2.0  
